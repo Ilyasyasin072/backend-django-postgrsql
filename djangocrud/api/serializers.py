@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Movie, Customer, Supplier, Inventory
+from .models import Movie, Customer, Supplier, Inventory, Stock
 
 
 class MovieSerializer(serializers.ModelSerializer):
@@ -41,6 +41,7 @@ class SupplierMiniSerializer(serializers.ModelSerializer):
         # fields = ['id', 'title'] custome field views
         fields = ['id', 'name_supplier', 'company']
 
+
 class InventorySerialize(serializers.ModelSerializer):
     class Meta:
         model = Inventory
@@ -51,3 +52,15 @@ class InventoryMiniSerialize(serializers.ModelSerializer):
     class Meta:
         model = Inventory
         fields = ['id', 'name', 'description', 'id_supplier']
+
+
+class StockSerialize(serializers.ModelSerializer):
+    class Meta:
+        model = Stock
+        fields = ['id', 'stock', 'id_inventory']
+
+
+class StockMiniSerialize(serializers.ModelSerializer):
+    class Meta:
+        model = Stock
+        fields = ['id', 'stock', 'id_inventory']

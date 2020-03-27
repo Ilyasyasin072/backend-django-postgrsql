@@ -9,6 +9,7 @@ router.register(r'movies', views.MovieViewSet)
 router.register(r'customers', views.CustomerViewSet)
 router.register(r'suppliers', views.SupplierViewSet)
 router.register(r'inventories', views.InventoryViewSet)
+router.register(r'stocks', views.StockViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

@@ -2,8 +2,9 @@ from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from .serializers import MovieSerializer, MovieMiniSerializer, CustomerSerializer, CustomerMiniSerializer, \
     SupplierSerialize, SupplierMiniSerializer, \
-    InventorySerialize, InventoryMiniSerialize
-from .models import Movie, Customer, Supplier, Inventory
+    InventorySerialize, InventoryMiniSerialize, \
+    StockSerialize, StockMiniSerialize
+from .models import Movie, Customer, Supplier, Inventory, Stock
 from rest_framework.response import Response
 
 
@@ -44,8 +45,8 @@ class SupplierViewSet(viewsets.ModelViewSet):
         suppliers = Supplier.objects.all()
         serializer = SupplierMiniSerializer(suppliers, many=True)
         return Response(serializer.data)
-#
-#
+
+
 class InventoryViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -56,4 +57,14 @@ class InventoryViewSet(viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
         inventories = Inventory.objects.all()
         serializer = InventoryMiniSerialize(inventories, many=True)
+        return Response(serializer.data)
+
+
+class StockViewSet(viewsets.ModelViewSet):
+    queryset = Stock.objects.all()
+    serializer_class = StockSerialize
+
+    def list(self, request, *args, **kwargs):
+        stocks = Stock.objects.all()
+        serializer =  StockMiniSerialize(stocks, many=True)
         return Response(serializer.data)

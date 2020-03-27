@@ -24,3 +24,9 @@ class Inventory(models.Model):
     description = models.CharField(max_length=100)
     id_supplier = models.ForeignKey(
         Supplier, on_delete=models.CASCADE)
+
+
+class Stock(models.Model):
+    stock = models.IntegerField()
+    id_inventory = models.ForeignKey(
+        Inventory, on_delete=models.CASCADE)
